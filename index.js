@@ -59,7 +59,7 @@ app.post('/subscribe', (req, res) => {
 });
 
 // example push route
-app.post('/push', (req, res) => {
+app.post('/push', (req, res, next) => {
     const pushSubscription = 'all'; // not really used for now
     const notificationMessage = req.body.notificationMessage;
     const notificationTitle = req.body.notificationTitle;
@@ -89,7 +89,7 @@ app.post('/push', (req, res) => {
     }
 
     function handleError(error, index) {
-        res.send(constants.errors.ERROR_MULTIPLE_PUBLISH);
+        console.log('Push send error: ', error);
     }
 
 });
