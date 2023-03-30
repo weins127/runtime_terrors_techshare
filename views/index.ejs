@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Push Codelab</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Push Notification Tech Share</h1>
+  </header>
+
+  <main>
+    <p>Welcome to the Run Time Terrors Push Notification tech share!</p>
+    <p>
+      <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Enable Push Messaging
+      </button>
+    </p>
+    <p>
+        <label for="title">Notification Title:</label><br>
+        <input type="text" id="titleInput" name="title"><br>
+        <label for="message">Message:</label><br>
+        <input type="text" id="messageInput" name="message"><br><br>
+        <button onclick="sendPush()" id="sendPush">
+          Send Push!
+        </button>
+    </p>
+    <section class="subscription-details js-subscription-details is-invisible">
+      <pre><code class="js-subscription-json"></code></pre>
+    </section>
+    <p>
+      Created based on these guides: <br>
+        Google Push Notification Code Lab (Client): https://codelabs.developers.google.com/codelabs/push-notifications#0 <br>
+        Brian Clark (PWA and Web Push API) (Server App): https://clarkio.com/2017/08/22/pwa-web-push-3/
+    </p>
+  </main>
+
+  <script src="scripts/main.js"></script>
+
+  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+</html>
