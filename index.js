@@ -63,6 +63,7 @@ app.post('/push', (req, res, next) => {
     const pushSubscription = 'all'; // not really used for now
     const notificationMessage = req.body.notificationMessage;
     const notificationTitle = req.body.notificationTitle;
+    const notificationLink = req.body.notificationLink;
 
     // not really used right now since code below sends to everyone
     if (!pushSubscription) {
@@ -75,7 +76,8 @@ app.post('/push', (req, res, next) => {
             let subJson = JSON.parse(subscription);
             webpush.sendNotification(subJson, JSON.stringify({
                 notificationMessage: notificationMessage,
-                notificationTitle: notificationTitle
+                notificationTitle: notificationTitle,
+                notificationLink: notificationLink
             }))
             .then((success) => handleSuccess(success, index))
             .catch((error) => handleError(error, index));

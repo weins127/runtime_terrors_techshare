@@ -13,6 +13,7 @@ let swRegistration = null;
 function sendPush() {
   const notificationTitle = document.getElementById("titleInput");
   const notificationMessage = document.getElementById("messageInput");
+  const notificationLink = document.getElementById("linkInput");
 
       // send push to server
       fetch("http://localhost:3000/push", {
@@ -22,7 +23,8 @@ function sendPush() {
         },
         body: JSON.stringify({
           "notificationTitle": notificationTitle.value,
-          "notificationMessage": notificationMessage.value
+          "notificationMessage": notificationMessage.value,
+          "notificationLink": notificationLink.value
         })
       })
       .then((data) => {

@@ -31,7 +31,9 @@ self.addEventListener('push', function(event) {
   const options = {
     body: `${data.notificationMessage}`,
     icon: 'images/icon.png',
-    badge: 'images/badge.png'
+    badge: 'images/badge.png',
+    // pass our data to notification click event
+    data: event.data.text()
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
@@ -39,14 +41,17 @@ self.addEventListener('push', function(event) {
 
 // we can customize what happens upon clicking the notification and even use our event data!
 self.addEventListener('notificationclick', function(event) {
+  // parse data again
+  const data = JSON.parse(event.notification.data);
   console.log('[Service Worker] Notification click Received.');
-
+  console.log("Notification Link: ", data.notificationLink);
   event.notification.close();
 
   event.waitUntil(
-    // just open google for now
-    clients.openWindow('https://google.com')
+    // open notification link
+    clients.openWindow(`${data.notificationLink}`)
   );
+
 });
 
 // deal with subscription changes
