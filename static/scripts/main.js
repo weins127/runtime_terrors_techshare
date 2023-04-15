@@ -79,7 +79,7 @@ function updateSubscriptionOnServer(subscription) {
     subscriptionDetails.classList.remove('is-invisible');
 
     // send subscription to server
-    fetch("http://localhost:3000/subscribe", {
+    fetch("subscribe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
