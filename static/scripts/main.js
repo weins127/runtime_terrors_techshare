@@ -16,7 +16,7 @@ function sendPush() {
   const notificationLink = document.getElementById("linkInput");
 
       // send push to server
-      fetch("http://localhost:3000/push", {
+      fetch("push", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
