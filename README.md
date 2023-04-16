@@ -22,17 +22,17 @@ Diagram 2
 ### index.js
 - server side
 
-```const webpush = require('web-push');```
-- using webpus library (node.js package)
+```const webpush = require('web-push');```js
+- using web-push library (node.js package)
 
-```let subscriptions = [];```
+```let subscriptions = [];```js
 - creating an array to store subscriptions
 - normally, would connect this to backend (database)
 
-```app.post('/subscribe', (req, res) => {```
+```app.post('/subscribe', (req, res) => {```js
 - adding a new subscriber on the server side
 
-```app.post('/push', (req, res, next) => {```
+```app.post('/push', (req, res, next) => {```js
 - sending a new push notification on the server side
 
 
