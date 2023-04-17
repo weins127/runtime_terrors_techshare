@@ -9,29 +9,6 @@ const pushButton = document.querySelector('.js-push-btn');
 let isSubscribed = false;
 let swRegistration = null;
 
-// send push handler
-function sendPush() {
-  const notificationTitle = document.getElementById("titleInput");
-  const notificationMessage = document.getElementById("messageInput");
-  const notificationLink = document.getElementById("linkInput");
-
-      // send push to server
-      fetch("push", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          "notificationTitle": notificationTitle.value,
-          "notificationMessage": notificationMessage.value,
-          "notificationLink": notificationLink.value
-        })
-      })
-      .then((data) => {
-        console.log("Result:", data);
-      });
-}
-
 // function needed to convert application key
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -148,7 +125,6 @@ function unsubscribeUser() {
 
 // 2. UI stuff
 function initializeUI() {
-  document.getElementById("sendPush").onclick = sendPush;
   pushButton.addEventListener('click', function() {
     pushButton.disabled = true;
     if (isSubscribed) {
