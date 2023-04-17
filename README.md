@@ -47,7 +47,31 @@ Diagram 2
       the notification to every subscriber
 
 ### sw.js
-- service workers
+- Service Workers
+
+- Purpose: to act as an intermediary between web server and the web browser 
+- Helps to enhance an already existing web application, potentially improving it's functionality, speed, or reliablity. 
+
+- Process: 
+    - Use our service worker to subscribe to a Push Service
+    - Service worker will now listen for push events
+    - If there is an event, service worker awakens and will push that meessage to the client
+    
+```self.addEventListener('push', function(event) {}```
+- What to do when we recieve a push notification
+    - NOTE: a push event doesn't necessarily send a notification on default
+    - data: event.data.text(): passes our data that was part of the push event into our notification            
+    
+```self.addEventListener('notificationclick', function(event) {}```
+- what happens when you click on notification
+    - pull ntoification data from options 
+    - wait until event is complete, closes to open a new window with the notification link
+
+
+```self.addEventListener('push', function(event) {}```
+- What occurs when a change has needed to be made pertaining to our subscriptions 
+    - every time you reload the page, check if there's a change in subscription
+    
 
 ## Conclusion
 - Is it worth doing all the work “in-house”? 
