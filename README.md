@@ -34,22 +34,20 @@ Diagram 3
 
 ```app.post('/subscribe', (req, res) => {}```
 - Subscribe route is used to add a new subscriber on the server side
-- Initially, get a fetch request sent from client (main.js)
+- Initially, get a request sent from client (main.js)
     - Request body contains a subscription object (an endpoint)
 - If subscriber doesn't already exist, add it to the array
 
 ```app.post('/push', (req, res, next) => {}```
 - Push route is used to send a new push notification on the server side
-- Initially, get a fetch request sent from client (main.js)
+- Initially, get a request sent from client (main.js)
     - Request body contains notification information
         - Notification message, title, and link
 - Loop through subscriptions array
     - Use sendNotification() method from web-push library
+        - Takes in a subcription object and a json string
         - Sends the notification to each subscriber (endpoint)
-- Normally, this would be behind some authentication 
-    - So your users can't send notifications to other users
-- Ideally, each endpoint could be linked to a user in a database 
-    - Allow you to send custom messages to specific users
+        - This is handled by the service worker
 
 
 ### sw.js
@@ -67,7 +65,7 @@ Diagram 3
     - data: event.data.text(): passes our data that was part of the push event into our notification            
     
 ```self.addEventListener('notificationclick', function(event) {}```
-- what happens when you click on notification
+- What happens when you click on notification
     - pull ntoification data from options 
     - wait until event is complete, closes to open a new window with the notification link
 
