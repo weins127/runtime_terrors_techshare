@@ -13,6 +13,9 @@ Diagram 1
 Diagram 2
 ![Diagram 2](diagrams/diagram2.png)
 
+Diagram 3
+![Diagram 3](diagrams/diagram3.png)
+
 
 ## Setting Up Push Notifications:
 
