@@ -17,34 +17,37 @@ Diagram 2
 ## Setting Up Push Notifications:
 
 ### main.js
-- client side
+- Client side
 
 ### index.js
-- server side
+- Server side
 
-```js const webpush = require('web-push');```
-- using web-push library for node.js
+```const webpush = require('web-push');```
+- Using web-push library for node.js
 
 ```let subscriptions = [];```
-- creating an array to store subscriptions
-- normally, would connect this to a database
+- Creating an array to store subscriptions
+- Normally, would connect this to a database
 
-```app.post('/subscribe', (req, res) => {```
-- subscribe route is used to add a new subscriber on the server side
-- initially, get a fetch request sent from client (main.js)
-    - request body contains a subscription object
-- if subscriber doesn't already exist, add it to the array
-- payload ???
+```app.post('/subscribe', (req, res) => {}```
+- Subscribe route is used to add a new subscriber on the server side
+- Initially, get a fetch request sent from client (main.js)
+    - Request body contains a subscription object (an endpoint)
+- If subscriber doesn't already exist, add it to the array
 
+```app.post('/push', (req, res, next) => {}```
+- Push route is used to send a new push notification on the server side
+- Initially, get a fetch request sent from client (main.js)
+    - Request body contains notification information
+        - Notification message, title, and link
+- Loop through subscriptions array
+    - Use sendNotification() method from web-push library
+        - Sends the notification to each subscriber (endpoint)
+- Normally, this would be behind some authentication 
+    - So your users can't send notifications to other users
+- Ideally, each endpoint could be linked to a user in a database 
+    - Allow you to send custom messages to specific users
 
-```app.post('/push', (req, res, next) => {```
-- push route is used to send a new push notification on the server side
-- initially, get a fetch request sent from client (main.js)
-    - request body contains notification information
-        - notification message, title, and link ???
-- loop through subscriptions array
-    - use sendNotification() method from web-push library to send 
-      the notification to every subscriber
 
 ### sw.js
 - Service Workers act as an intermediary between web server and the web browser 
