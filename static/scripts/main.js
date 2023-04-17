@@ -30,7 +30,6 @@ function sendPush() {
       .then((data) => {
         console.log("Result:", data);
       });
-  
 }
 
 // function needed to convert application key
@@ -69,12 +68,16 @@ function updateBtn() {
 
 // update subscription with server
 function updateSubscriptionOnServer(subscription) {
+
+  // GUI stuff
   const subscriptionJson = document.querySelector('.js-subscription-json');
   const subscriptionDetails =
     document.querySelector('.js-subscription-details');
 
   if (subscription) {
     const subscriptionData = JSON.stringify(subscription);
+
+    // updating text box in GUI
     subscriptionJson.textContent = subscriptionData;
     subscriptionDetails.classList.remove('is-invisible');
 
@@ -96,6 +99,7 @@ function updateSubscriptionOnServer(subscription) {
   }
 }
 
+// 4.
 // subscribe the user. uses the created service worker swRegistration
 function subscribeUser() {
   const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
@@ -142,7 +146,7 @@ function unsubscribeUser() {
   });
 }
 
-// UI stuff
+// 2. UI stuff
 function initializeUI() {
   document.getElementById("sendPush").onclick = sendPush;
   pushButton.addEventListener('click', function() {
@@ -150,6 +154,7 @@ function initializeUI() {
     if (isSubscribed) {
       unsubscribeUser();
     } else {
+      // 3.
       subscribeUser();
     }
   });
@@ -157,6 +162,7 @@ function initializeUI() {
   // Set the initial subscription value
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
+    // check if subscription exists in swRegistration
     isSubscribed = !(subscription === null);
 
     updateSubscriptionOnServer(subscription);
@@ -171,7 +177,7 @@ function initializeUI() {
   });
 }
 
-// check if we can use serviceWorker and PushMagager
+// 1. check if we can use serviceWorker and PushMagager
 if ('serviceWorker' in navigator && 'PushManager' in window) {
   console.log('Service Worker and Push is supported');
 

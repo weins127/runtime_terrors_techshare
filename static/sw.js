@@ -64,7 +64,6 @@ self.addEventListener('pushsubscriptionchange', function(event) {
       applicationServerKey: applicationServerKey
     })
     .then(function(newSubscription) {
-      // TODO: Send to application server
       console.log('[Service Worker] New subscription: ', newSubscription);
     })
   );

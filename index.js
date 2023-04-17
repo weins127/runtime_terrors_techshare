@@ -21,6 +21,7 @@ app.listen(3000, () => {
 dotenv.config()
 const publicVapidKey = process.env.VAPID_PUBLIC_KEY;
 const privateVapidKey = process.env.VAPID_PRIVATE_KEY;
+const superSpecialKey = process.env.SUPER_SPECIAL_KEY;
 
 // setup push notification service
 webpush.setVapidDetails('mailto:contact@doyourchores.com', 
@@ -60,18 +61,15 @@ app.post('/subscribe', (req, res) => {
 
 // example push route
 app.post('/push', (req, res, next) => {
-    const pushSubscription = 'all'; // not really used for now
+    // form the message
+    
     const notificationMessage = req.body.notificationMessage;
     const notificationTitle = req.body.notificationTitle;
     const notificationLink = req.body.notificationLink;
-
-    // not really used right now since code below sends to everyone
-    if (!pushSubscription) {
-        res.status(400).send(constants.errors.ERROR_SUBSCRIPTION_REQUIRED);
-    }
+    const clientPushKey = req.body.pushKey;
 
     // loop through and notify all device subscriptions in subscriptions array
-    if (subscriptions.length) {
+    if (subscriptions.length && clientPushKey == superSpecialKey) {
         subscriptions.map((subscription, index) => {
             let subJson = JSON.parse(subscription);
             webpush.sendNotification(subJson, JSON.stringify({
