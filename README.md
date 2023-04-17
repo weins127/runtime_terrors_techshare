@@ -47,9 +47,7 @@ Diagram 2
       the notification to every subscriber
 
 ### sw.js
-- Service Workers
-
-- Purpose: to act as an intermediary between web server and the web browser 
+- Service Workers act as an intermediary between web server and the web browser 
 - Helps to enhance an already existing web application, potentially improving it's functionality, speed, or reliablity. 
 
 - Process: 
