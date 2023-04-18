@@ -4,6 +4,9 @@ The Runtime Terrors
 
 Demo Page: https://runtime-terrors-techshare.onrender.com/
 
+![Demo Page](diagrams/frame.png)
+Unfortunately, our push notifications are not compatible with iOS devices
+
 
 ## Introduction 
 
@@ -127,8 +130,6 @@ Diagram 3
     - Third Parties: OneSignal, Firebase Cloud Messaging
     - Frameworks and Libraries: React Native Push Notification, Push.js, and WebPush
     - APIs: Amazon SNS, Twilio can be used to leverage pre-built infrastructure
-
-
 
 
 ## Running code locally:
