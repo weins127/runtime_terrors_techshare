@@ -19,23 +19,49 @@ Diagram 3
 
 ## Setting Up Push Notifications:
 
-### main.js
-- Client side
+### main.js - client side
 
-### index.js
-- Server side
+```if ('serviceWorker' in navigator && 'PushManager' in window) {}```
+- Check if serviceWorker and PushMagager are supported
+    - These services are needed to receive push notifications
+
+```navigator.serviceWorker.register('sw.js')```
+- If supported, register service worker code into the browser
+- Service worker must be registered when the site is loaded
+- Returns a promise --> get a service worker registration object 
+    -  Store this object for later use
+    - ```swRegistration = swReg;```
+
+```function initializeUI() {}```
+- Initialize the user interface
+- Set up button for enabling/disabling notifications
+- Allow user to subscribe or unsubscribe
+
+```function subscribeUser()```
+- Called when a user enables push messaging
+-  ```swRegistration.pushManager.subscribe()```
+    - Using the previously created service worker registration object
+    - Subscribe user to push notification service
+    - Returns a promise --> get subscription object
+        - Object contains an endpoint used on the server side
+
+```function updateSubscriptionOnServer(subscription) {}```
+- Send subscription object to server
+
+
+### index.js - server side
 
 ```const webpush = require('web-push');```
 - Using web-push library for node.js
 
 ```let subscriptions = [];```
-- Creating an array to store subscriptions
-- Normally, would connect this to a database
+- Creating an temporary array to store subscriptions
+- Normally, would store subscriptions in a database
 
 ```app.post('/subscribe', (req, res) => {}```
-- Subscribe route is used to add a new subscriber on the server side
+- Subscribe route is used to add a new subscriber
 - Initially, get a request sent from client (main.js)
-    - Request body contains a subscription object (an endpoint)
+    - Request body contains a subscription object (has an endpoint)
 - If subscriber doesn't already exist, add it to the array
 
 ```app.post('/push', (req, res, next) => {}```
@@ -47,10 +73,10 @@ Diagram 3
     - Use sendNotification() method from web-push library
         - Takes in a subcription object and a json string
         - Sends the notification to each subscriber (endpoint)
-        - This is handled by the service worker
+        - The rest is handled by the service worker
 
 
-### sw.js
+### sw.js - client side
 - Service Workers act as an intermediary between web server and the web browser 
 - Helps to enhance an already existing web application, potentially improving it's functionality, speed, or reliablity. 
 
